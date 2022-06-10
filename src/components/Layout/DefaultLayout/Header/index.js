@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 // import styles from './Header.module.scss';
 import './Header.scss';
 import logo from '~/assets/images/header-logo.png';
@@ -9,61 +10,61 @@ function Header() {
             <div className="header1">
                 <div className="header1-text">HIT - BOOKS</div>
                 <div className="header1-icons">
-                    <a href="/">
+                    <Link to="/">
                         <i class="fa-brands fa-facebook"></i>
-                    </a>
-                    <a href="/">
+                    </Link>
+                    <Link to="/">
                         <i class="fa-brands fa-tiktok"></i>
-                    </a>
-                    <a href="/">
+                    </Link>
+                    <Link to="/">
                         <i class="fa-brands fa-youtube"></i>
-                    </a>
+                    </Link>
                 </div>
             </div>
             <div className="header2">
                 <div className="header2-logo">
-                    <a href="/">
+                    <Link to="/">
                         <img src={logo} alt="logo" />
-                    </a>
+                    </Link>
                 </div>
                 <div className="header2-navbar">
                     <ul>
-                        <a href="/">
+                        <Link to="/">
                             <li className="active">
                                 <span>Trang chủ</span>
                             </li>
-                        </a>
-                        <a href="/">
+                        </Link>
+                        <Link to="/danh-muc">
                             <li>
                                 <span>Danh mục</span>
                             </li>
-                        </a>
-                        <a href="/">
+                        </Link>
+                        <Link to="/sach-hay">
                             <li>
                                 <span>Sách hay</span>
                             </li>
-                        </a>
-                        <a href="/">
+                        </Link>
+                        <Link to="/bai-viet-hay">
                             <li>
                                 <span>Bài viết hay</span>
                             </li>
-                        </a>
-                        <a href="/">
+                        </Link>
+                        <Link to="/video-hay">
                             <li>
                                 <span>Video hay</span>
                             </li>
-                        </a>
-                        <a href="/">
+                        </Link>
+                        <Link to="/gioi-thieu">
                             <li>
                                 <span>Giới thiệu</span>
                             </li>
-                        </a>
+                        </Link>
                     </ul>
                 </div>
                 <div className="header2-search">
-                    <a href="/">
+                    <Link to="/">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                    </a>
+                    </Link>
                 </div>
             </div>
             <div className="header3">

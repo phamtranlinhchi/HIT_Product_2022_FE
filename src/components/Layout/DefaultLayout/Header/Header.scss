@@ -3,7 +3,6 @@ header {
     .header1 {
         a {
             color: #fff;
-            text-decoration: none;
             &:hover {
                 color: var(--primary);
             }
@@ -12,31 +11,30 @@ header {
         background-color: black;
         display: flex;
         justify-content: space-between;
-        padding: 0 200px;
-        font-size: 20px;
+        padding: 0 20rem;
+        font-size: 2rem;
         &-icons {
-            width: 100px;
+            width: 10rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
     }
     .header2 {
-        padding: 0 200px;
-        height: 70px;
+        padding: 0 20rem;
+        height: 7rem;
         background-color: #d9d9d9;
         display: flex;
         justify-content: space-between;
         align-items: center;
         a {
             color: #6f6f6f;
-            text-decoration: none;
         }
 
         &-logo {
-            padding-left: 25px;
+            // padding-left: 2.5rem;
             img {
-                width: 60px;
+                width: 6rem;
             }
         }
 
@@ -46,7 +44,7 @@ header {
                 display: flex;
 
                 li {
-                    padding: 5px 15px;
+                    padding: 0.5rem 1.5rem;
                     &.active {
                         color: #000;
                         span::after {
@@ -70,10 +68,10 @@ header {
                             transition: all 0.3s ease;
                             content: '';
                             position: absolute;
-                            bottom: -6px;
+                            bottom: -0.6rem;
                             left: 0;
-                            height: 2px;
-                            width: 1px;
+                            height: 0.2rem;
+                            width: 0.1rem;
                         }
                     }
                 }
@@ -82,8 +80,8 @@ header {
         &-search {
             i {
                 transition: all 0.14s ease-out;
-                font-size: 30px;
-                padding-right: 10px;
+                font-size: 3rem;
+                padding-right: 1rem;
                 &:hover {
                     color: #000;
                 }
@@ -93,10 +91,10 @@ header {
     .header3 {
         display: flex;
         justify-content: space-between;
-        padding: 5px 200px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.212);
+        padding: 0.5rem 20rem;
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.212);
         span {
-            margin-left: 10px;
+            margin-left: 1rem;
         }
     }
 }
