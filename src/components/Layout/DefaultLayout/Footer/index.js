@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { TextField, IconButton } from '@mui/material';
 import { SearchOutlined } from '@mui/icons-material';
 import './Footer.scss';
@@ -10,24 +11,24 @@ function Footer() {
             <div className="footer1">
                 <div className="footer1-list">
                     <ul>
-                        <a href="/">
+                        <Link to="/">
                             <li>Trang chủ</li>
-                        </a>
-                        <a href="/">
+                        </Link>
+                        <Link to="/danh-muc">
                             <li>Danh mục</li>
-                        </a>
-                        <a href="/">
+                        </Link>
+                        <Link to="/sach-hay">
                             <li>Sách hay</li>
-                        </a>
-                        <a href="/">
+                        </Link>
+                        <Link to="/bai-viet-hay">
                             <li>Bài viết hay</li>
-                        </a>
-                        <a href="/">
+                        </Link>
+                        <Link to="/video-hay">
                             <li>Video hay</li>
-                        </a>
-                        <a href="/">
+                        </Link>
+                        <Link to="/gioi-thieu">
                             <li>Giới thiệu</li>
-                        </a>
+                        </Link>
                     </ul>
                 </div>
                 <div className="footer1-search">
@@ -48,9 +49,9 @@ function Footer() {
                     />
                 </div>
                 <div className="footer1-logo">
-                    <a href="/">
+                    <Link to="/">
                         <img src={logo} alt="logo" />
-                    </a>
+                    </Link>
                     <div className="text">Sách là cửa sổ tri thức</div>
                 </div>
             </div>
