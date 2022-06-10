@@ -1,0 +1,102 @@
+header {
+    width: 100%;
+    .header1 {
+        a {
+            color: #fff;
+            &:hover {
+                color: var(--primary);
+            }
+        }
+        color: #fff;
+        background-color: black;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 20rem;
+        font-size: 2rem;
+        &-icons {
+            width: 10rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+    .header2 {
+        padding: 0 20rem;
+        height: 7rem;
+        background-color: #d9d9d9;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        a {
+            color: #6f6f6f;
+        }
+
+        &-logo {
+            // padding-left: 2.5rem;
+            img {
+                width: 6rem;
+            }
+        }
+
+        &-navbar {
+            ul {
+                list-style: none;
+                display: flex;
+
+                .active {
+                    color: #000;
+                    span::after {
+                        width: 100%;
+                        background-color: #000;
+                    }
+                    color: #000;
+                }
+
+                li {
+                    padding: 0.5rem 1.5rem;
+
+                    &:hover {
+                        span::after {
+                            width: 100%;
+                            background-color: #000;
+                        }
+                        color: #000;
+                    }
+                    span {
+                        position: relative;
+                        font-weight: bold;
+
+                        &::after {
+                            transition: all 0.3s ease;
+                            content: '';
+                            position: absolute;
+                            bottom: -0.6rem;
+                            left: 0;
+                            height: 0.2rem;
+                            width: 0.1rem;
+                        }
+                    }
+                }
+            }
+        }
+        &-search {
+            i {
+                transition: all 0.14s ease-out;
+                font-size: 3rem;
+                padding-right: 1rem;
+                &:hover {
+                    color: #000;
+                }
+            }
+        }
+    }
+    .header3 {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 20rem;
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.212);
+        span {
+            margin-left: 1rem;
+        }
+    }
+}
