@@ -43,16 +43,18 @@ header {
                 list-style: none;
                 display: flex;
 
+                .active {
+                    color: #000;
+                    span::after {
+                        width: 100%;
+                        background-color: #000;
+                    }
+                    color: #000;
+                }
+
                 li {
                     padding: 0.5rem 1.5rem;
-                    &.active {
-                        color: #000;
-                        span::after {
-                            width: 100%;
-                            background-color: #000;
-                        }
-                        color: #000;
-                    }
+
                     &:hover {
                         span::after {
                             width: 100%;

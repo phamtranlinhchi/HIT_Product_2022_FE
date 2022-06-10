@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 // import styles from './Header.module.scss';
 import './Header.scss';
 import logo from '~/assets/images/header-logo.png';
@@ -29,36 +29,36 @@ function Header() {
                 </div>
                 <div className="header2-navbar">
                     <ul>
-                        <Link to="/">
-                            <li className="active">
+                        <NavLink to="/" activeClassName="active">
+                            <li className="home">
                                 <span>Trang chủ</span>
                             </li>
-                        </Link>
-                        <Link to="/danh-muc">
+                        </NavLink>
+                        <NavLink to="/danh-muc">
                             <li>
                                 <span>Danh mục</span>
                             </li>
-                        </Link>
-                        <Link to="/sach-hay">
+                        </NavLink>
+                        <NavLink to="/sach-hay">
                             <li>
                                 <span>Sách hay</span>
                             </li>
-                        </Link>
-                        <Link to="/bai-viet-hay">
+                        </NavLink>
+                        <NavLink to="/bai-viet-hay">
                             <li>
                                 <span>Bài viết hay</span>
                             </li>
-                        </Link>
-                        <Link to="/video-hay">
+                        </NavLink>
+                        <NavLink to="/video-hay">
                             <li>
                                 <span>Video hay</span>
                             </li>
-                        </Link>
-                        <Link to="/gioi-thieu">
+                        </NavLink>
+                        <NavLink to="/gioi-thieu">
                             <li>
                                 <span>Giới thiệu</span>
                             </li>
-                        </Link>
+                        </NavLink>
                     </ul>
                 </div>
                 <div className="header2-search">
