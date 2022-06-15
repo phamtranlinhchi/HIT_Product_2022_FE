@@ -6,10 +6,30 @@ import logo from '~/assets/images/header-logo.png';
 
 function Header() {
     const pageLocation = useLocation();
-    let currentPage = useRef();
-    useLayoutEffect(() => {
-        currentPage.current = document.querySelector('.active span').innerHTML;
-    });
+    let currentPage = '';
+    switch (pageLocation.pathname) {
+        case '/':
+            currentPage = 'Trang chủ';
+            break;
+        case '/danh-muc':
+            currentPage = 'Danh mục';
+            break;
+        case '/sach-hay':
+            currentPage = 'Sách hay';
+            break;
+        case '/bai-viet-hay':
+            currentPage = 'Bài viết hay';
+            break;
+        case '/video-hay':
+            currentPage = 'Video hay';
+            break;
+        case '/gioi-thieu':
+            currentPage = 'Giới thiệu';
+            break;
+        default:
+            currentPage = '';
+            break;
+    }
 
     return (
         <header>
@@ -74,7 +94,7 @@ function Header() {
                 </div>
             </div>
             <div className="header3">
-                <div className="header3-page">{currentPage.current}</div>
+                <div className="header3-page">{currentPage}</div>
                 <div className="header3-account">
                     AccountTest
                     <span>
