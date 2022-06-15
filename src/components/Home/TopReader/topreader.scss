@@ -1,0 +1,48 @@
+.topreader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5rem 0;
+    &_text {
+        margin-bottom: 2rem;
+    }
+    &_trophies {
+        // width: 100%;
+        padding: 0 5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        &-trophy {
+            width: 20%;
+            img {
+                padding: 0 2.4rem;
+            }
+            &-name {
+                width: 100%;
+
+                margin-top: 2rem;
+            }
+        }
+    }
+    &_myrank {
+        margin-top: 2.5rem;
+
+        &-mine {
+            display: flex;
+            width: 20rem;
+            justify-content: space-between;
+            margin-top: 2rem;
+            &-rank {
+                padding: 0.4rem 1.6rem;
+                background-color: #000;
+                color: #fff;
+                text-align: center;
+                border-radius: 0.5rem;
+            }
+            &-name {
+                width: 15rem;
+            }
+        }
+    }
+}

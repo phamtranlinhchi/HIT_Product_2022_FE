@@ -1,10 +1,16 @@
-import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useLayoutEffect, useRef } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 // import styles from './Header.module.scss';
 import './Header.scss';
 import logo from '~/assets/images/header-logo.png';
 
 function Header() {
+    const pageLocation = useLocation();
+    let currentPage = useRef();
+    useLayoutEffect(() => {
+        currentPage.current = document.querySelector('.active span').innerHTML;
+    });
+
     return (
         <header>
             <div className="header1">
@@ -68,7 +74,7 @@ function Header() {
                 </div>
             </div>
             <div className="header3">
-                <div className="header3-page">Trang chủ</div>
+                <div className="header3-page">{currentPage.current}</div>
                 <div className="header3-account">
                     AccountTest
                     <span>

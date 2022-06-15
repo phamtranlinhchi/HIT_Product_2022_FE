@@ -1,0 +1,21 @@
+.nicevideos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5rem 0;
+    .home-title {
+        margin-bottom: 3rem;
+    }
+    .videos-row {
+        margin-top: 2rem;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        .video {
+            width: 30%;
+        }
+    }
+    .home-box {
+        margin-top: 3rem;
+    }
+}

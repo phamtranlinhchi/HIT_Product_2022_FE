@@ -4,9 +4,9 @@ import Introduce from '~/pages/Introduce';
 import NiceBooks from '~/pages/NiceBooks';
 import NiceVideos from '~/pages/NiceVideos';
 import NicePosts from '~/pages/NicePosts';
+import NotFound from '~/pages/NotFound';
 
 const publicRoutes = [
-    { path: '/', component: Home },
     {
         path: '/danh-muc',
         component: Category,
@@ -26,6 +26,12 @@ const publicRoutes = [
     {
         path: '/gioi-thieu',
         component: Introduce,
+    },
+    { path: '/', component: Home },
+    {
+        path: '*',
+        layout: null,
+        component: NotFound,
     },
 ];
 
