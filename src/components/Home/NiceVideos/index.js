@@ -11,19 +11,19 @@ function NiceVideos() {
                         className="video"
                         title="video"
                         src="https://www.youtube.com/embed/YG8ws3dfMM0"
-                        allowfullscreen
+                        allowFullScreen
                     ></iframe>
                     <iframe
                         className="video"
                         title="video"
                         src="https://www.youtube.com/embed/YG8ws3dfMM0"
-                        allowfullscreen
+                        allowFullScreen
                     ></iframe>
                     <iframe
                         className="video"
                         title="video"
                         src="https://www.youtube.com/embed/YG8ws3dfMM0"
-                        allowfullscreen
+                        allowFullScreen
                     ></iframe>
                 </div>
                 <div className="videos-row">
@@ -31,19 +31,19 @@ function NiceVideos() {
                         className="video"
                         title="video"
                         src="https://www.youtube.com/embed/YG8ws3dfMM0"
-                        allowfullscreen
+                        allowFullScreen
                     ></iframe>
                     <iframe
                         className="video"
                         title="video"
                         src="https://www.youtube.com/embed/YG8ws3dfMM0"
-                        allowfullscreen
+                        allowFullScreen
                     ></iframe>
                     <iframe
                         className="video"
                         title="video"
                         src="https://www.youtube.com/embed/YG8ws3dfMM0"
-                        allowfullscreen
+                        allowFullScreen
                     ></iframe>
                 </div>
             </div>
