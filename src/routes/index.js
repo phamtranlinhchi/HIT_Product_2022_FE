@@ -4,7 +4,7 @@ import Introduce from '~/pages/Introduce';
 import NiceBooks from '~/pages/NiceBooks';
 import NiceVideos from '~/pages/NiceVideos';
 import NicePosts from '~/pages/NicePosts';
-
+import BookEffect from '~/pages/BookEffect';
 const publicRoutes = [
     { path: '/', component: Home },
     {
@@ -27,6 +27,10 @@ const publicRoutes = [
         path: '/gioi-thieu',
         component: Introduce,
     },
+    {
+        path: '/sach',
+        component: BookEffect
+    }
 ];
 
 const privateRoutes = [];
