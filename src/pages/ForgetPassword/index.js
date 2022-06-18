@@ -74,7 +74,7 @@ function ForgetPassword() {
                                         size="large"
                                         type="submit"
                                         variant="contained"
-                                        className="login-button"
+                                        className="forgetpw-button"
                                     >
                                         Xác nhận
                                     </Button>

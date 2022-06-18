@@ -1,5 +1,5 @@
 import React from 'react';
-import './login.scss';
+import './reset_password.scss';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import * as Yup from 'yup';
@@ -8,25 +8,27 @@ import { Box, Button, Container, Link, TextField, Typography } from '@mui/materi
 
 import logo from '~/assets/images/header-logo.png';
 
-function Login() {
+function ResetPassword() {
     const navigate = useNavigate();
 
     return (
-        <div className="login">
+        <div className="resetpw">
             <Helmet>
-                <title>Đăng nhập</title>
+                <title>Đăng ký</title>
             </Helmet>
 
-            <div className="login_content">
+            <div className="resetpw_content">
                 <Container maxWidth="sm">
                     <Formik
                         initialValues={{
-                            username: '',
                             password: '',
+                            cfpassword: '',
                         }}
                         validationSchema={Yup.object().shape({
-                            username: Yup.string().required('*Trường này là bắt buộc'),
-                            password: Yup.string().required('*Trường này là bắt buộc'),
+                            password: Yup.string().max(255).required('*Trường này là bắt buộc'),
+                            cfpassword: Yup.string()
+                                .oneOf([Yup.ref('password'), null], 'Mật khẩu không khớp')
+                                .required('*Trường này là bắt buộc'),
                         })}
                         onSubmit={() => {
                             navigate('/', { replace: true });
@@ -40,19 +42,6 @@ function Login() {
                                     </Link>
                                 </Box>
                                 <TextField
-                                    error={Boolean(touched.username && errors.username)}
-                                    fullWidth
-                                    helperText={touched.username && errors.username}
-                                    label="Tên đăng nhập"
-                                    margin="normal"
-                                    name="username"
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    value={values.username}
-                                    variant="outlined"
-                                />
-
-                                <TextField
                                     error={Boolean(touched.password && errors.password)}
                                     fullWidth
                                     helperText={touched.password && errors.password}
@@ -65,6 +54,19 @@ function Login() {
                                     value={values.password}
                                     variant="outlined"
                                 />
+                                <TextField
+                                    error={Boolean(touched.cfpassword && errors.cfpassword)}
+                                    fullWidth
+                                    helperText={touched.cfpassword && errors.cfpassword}
+                                    label="Nhập lại mật khẩu"
+                                    margin="normal"
+                                    name="cfpassword"
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    type="password"
+                                    value={values.cfpassword}
+                                    variant="outlined"
+                                />
 
                                 <Box sx={{ py: 2 }}>
                                     <Button
@@ -73,22 +75,27 @@ function Login() {
                                         size="large"
                                         type="submit"
                                         variant="contained"
-                                        className="login-button"
+                                        className="resetpw-button"
                                     >
-                                        Đăng nhập
+                                        Xác nhận
                                     </Button>
                                 </Box>
                                 <Typography sx={{ textAlign: 'center' }} color="textSecondary" variant="body1">
-                                    <Link sx={{ color: '#000' }} component={RouterLink} to="/quen-mat-khau">
-                                        Quên mật khẩu?{' '}
+                                    <Link
+                                        sx={{ marginRight: '10px', textDecoration: 'none' }}
+                                        component={RouterLink}
+                                        to="/dang-ky"
+                                        variant="h5"
+                                    >
+                                        Đăng ký
                                     </Link>
                                     <Link
                                         sx={{ textDecoration: 'none' }}
                                         component={RouterLink}
-                                        to="/dang-ky"
-                                        variant="h6"
+                                        to="/dang-nhap"
+                                        variant="h5"
                                     >
-                                        Đăng ký
+                                        Đăng nhập
                                     </Link>
                                 </Typography>
                             </form>
@@ -100,4 +107,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default ResetPassword;

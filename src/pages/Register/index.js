@@ -116,7 +116,7 @@ function Register() {
                                 <Typography sx={{ textAlign: 'center' }} color="textSecondary" variant="body1">
                                     Đã có tài khoản?{' '}
                                     <Link
-                                        sx={{ color: '#ca9222', textDecoration: 'none' }}
+                                        sx={{ textDecoration: 'none' }}
                                         component={RouterLink}
                                         to="/dang-nhap"
                                         variant="h6"

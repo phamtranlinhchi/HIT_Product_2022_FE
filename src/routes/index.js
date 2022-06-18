@@ -10,6 +10,7 @@ import NotFound from '~/pages/NotFound';
 import Register from '~/pages/Register';
 import Login from '~/pages/Login';
 import ForgetPassword from '~/pages/ForgetPassword';
+import ResetPassword from '~/pages/ResetPassword';
 
 const publicRoutes = [
     {
@@ -46,6 +47,11 @@ const publicRoutes = [
         path: '/quen-mat-khau',
         layout: AuthLayout,
         component: ForgetPassword,
+    },
+    {
+        path: '/doi-mat-khau',
+        layout: AuthLayout,
+        component: ResetPassword,
     },
 
     { path: '/', component: Home },
