@@ -115,7 +115,12 @@ function Register() {
                                 </Box>
                                 <Typography sx={{ textAlign: 'center' }} color="textSecondary" variant="body1">
                                     Đã có tài khoản?{' '}
-                                    <Link sx={{ color: '#ca9222' }} component={RouterLink} to="/dang-nhap" variant="h6">
+                                    <Link
+                                        sx={{ color: '#ca9222', textDecoration: 'none' }}
+                                        component={RouterLink}
+                                        to="/dang-nhap"
+                                        variant="h6"
+                                    >
                                         Đăng nhập
                                     </Link>
                                 </Typography>
