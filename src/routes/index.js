@@ -5,6 +5,9 @@ import NiceBooks from '~/pages/NiceBooks';
 import NiceVideos from '~/pages/NiceVideos';
 import NicePosts from '~/pages/NicePosts';
 import NotFound from '~/pages/NotFound';
+import Register from '~/pages/Register';
+import Login from '~/pages/Login';
+import ForgetPassword from '~/pages/ForgetPassword';
 
 const publicRoutes = [
     {
@@ -27,6 +30,22 @@ const publicRoutes = [
         path: '/gioi-thieu',
         component: Introduce,
     },
+    {
+        path: '/dang-ky',
+        layout: null,
+        component: Register,
+    },
+    {
+        path: '/dang-nhap',
+        layout: null,
+        component: Login,
+    },
+    {
+        path: '/quen-mat-khau',
+        layout: null,
+        component: ForgetPassword,
+    },
+
     { path: '/', component: Home },
     {
         path: '*',
