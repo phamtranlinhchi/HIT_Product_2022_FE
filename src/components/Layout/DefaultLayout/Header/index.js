@@ -31,75 +31,93 @@ function Header() {
             break;
     }
 
+    const user = null;
+
     return (
         <header>
-            <div className="header1">
-                <div className="header1-text">HIT - BOOKS</div>
-                <div className="header1-icons">
-                    <Link to="/">
-                        <i class="fa-brands fa-facebook"></i>
-                    </Link>
-                    <Link to="/">
-                        <i class="fa-brands fa-tiktok"></i>
-                    </Link>
-                    <Link to="/">
-                        <i class="fa-brands fa-youtube"></i>
-                    </Link>
+            <div style={{ position: 'fixed', top: 0, width: '100%', zIndex: 99 }}>
+                <div className="header1">
+                    <div className="header1-text">HIT - BOOKS</div>
+                    <div className="header1-icons">
+                        <Link to="/">
+                            <i class="fa-brands fa-facebook"></i>
+                        </Link>
+                        <Link to="/">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </Link>
+                        <Link to="/">
+                            <i class="fa-brands fa-youtube"></i>
+                        </Link>
+                    </div>
                 </div>
-            </div>
-            <div className="header2">
-                <div className="header2-logo">
-                    <Link to="/">
-                        <img src={logo} alt="logo" />
-                    </Link>
-                </div>
-                <div className="header2-navbar">
-                    <ul>
-                        <NavLink to="/" activeClassName="active">
-                            <li className="home">
-                                <span>Trang chủ</span>
-                            </li>
-                        </NavLink>
-                        <NavLink to="/danh-muc">
-                            <li>
-                                <span>Danh mục</span>
-                            </li>
-                        </NavLink>
-                        <NavLink to="/sach-hay">
-                            <li>
-                                <span>Sách hay</span>
-                            </li>
-                        </NavLink>
-                        <NavLink to="/bai-viet-hay">
-                            <li>
-                                <span>Bài viết hay</span>
-                            </li>
-                        </NavLink>
-                        <NavLink to="/video-hay">
-                            <li>
-                                <span>Video hay</span>
-                            </li>
-                        </NavLink>
-                        <NavLink to="/gioi-thieu">
-                            <li>
-                                <span>Giới thiệu</span>
-                            </li>
-                        </NavLink>
-                    </ul>
-                </div>
-                <div className="header2-search">
-                    <Link to="/">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </Link>
+                <div className="header2">
+                    <div className="header2-logo">
+                        <Link to="/">
+                            <img src={logo} alt="logo" />
+                        </Link>
+                    </div>
+                    <div className="header2-navbar">
+                        <ul>
+                            <NavLink to="/" activeClassName="active">
+                                <li className="home">
+                                    <span>Trang chủ</span>
+                                </li>
+                            </NavLink>
+                            <NavLink to="/danh-muc">
+                                <li>
+                                    <span>Danh mục</span>
+                                </li>
+                            </NavLink>
+                            <NavLink to="/sach-hay">
+                                <li>
+                                    <span>Sách hay</span>
+                                </li>
+                            </NavLink>
+                            <NavLink to="/bai-viet-hay">
+                                <li>
+                                    <span>Bài viết hay</span>
+                                </li>
+                            </NavLink>
+                            <NavLink to="/video-hay">
+                                <li>
+                                    <span>Video hay</span>
+                                </li>
+                            </NavLink>
+                            <NavLink to="/gioi-thieu">
+                                <li>
+                                    <span>Giới thiệu</span>
+                                </li>
+                            </NavLink>
+                        </ul>
+                    </div>
+                    <div className="header2-search">
+                        <Link to="/">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </Link>
+                    </div>
                 </div>
             </div>
             <div className="header3">
                 <div className="header3-page">{currentPage}</div>
                 <div className="header3-account">
-                    AccountTest
-                    <span>
-                        <i class="fa-regular fa-user"></i>
-                    </span>
+                    {user ? (
+                        <>
+                            {user.name}{' '}
+                            <span>
+                                <i class="fa-regular fa-user"></i>
+                            </span>
+                        </>
+                    ) : (
+                        <div>
+                            <Link className="header3-authlink" style={{ color: '#000' }} to="/dang-ky">
+                                Đăng ký
+                            </Link>{' '}
+                            |{' '}
+                            <Link className="header3-authlink" style={{ color: '#000' }} to="/dang-nhap">
+                                Đăng nhập
+                            </Link>
+                        </div>
+                    )}
                 </div>
             </div>
         </header>

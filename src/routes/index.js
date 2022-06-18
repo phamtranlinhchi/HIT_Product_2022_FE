@@ -1,3 +1,5 @@
+import AuthLayout from '~/components/Layout/AuthLayout';
+
 import Home from '~/pages/Home';
 import Category from '~/pages/Category';
 import Introduce from '~/pages/Introduce';
@@ -32,17 +34,17 @@ const publicRoutes = [
     },
     {
         path: '/dang-ky',
-        layout: null,
+        layout: AuthLayout,
         component: Register,
     },
     {
         path: '/dang-nhap',
-        layout: null,
+        layout: AuthLayout,
         component: Login,
     },
     {
         path: '/quen-mat-khau',
-        layout: null,
+        layout: AuthLayout,
         component: ForgetPassword,
     },
 

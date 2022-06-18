@@ -4,84 +4,68 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { Box, Button, Checkbox, Container, FormHelperText, Link, TextField, Typography } from '@mui/material';
+import { Box, Button, Container, Link, TextField, Typography } from '@mui/material';
+
+import logo from '~/assets/images/header-logo.png';
 
 function Register() {
     const navigate = useNavigate();
 
     return (
-        <>
+        <div className="register">
             <Helmet>
                 <title>Đăng ký</title>
             </Helmet>
-            <Box
-                sx={{
-                    backgroundColor: 'background.default',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: '100%',
-                    justifyContent: 'center',
-                }}
-            >
+
+            <div className="register_content">
                 <Container maxWidth="sm">
                     <Formik
                         initialValues={{
                             email: '',
-                            firstName: '',
-                            lastName: '',
+                            username: '',
                             password: '',
-                            policy: false,
+                            cfpassword: '',
                         }}
                         validationSchema={Yup.object().shape({
-                            email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-                            firstName: Yup.string().max(255).required('First name is required'),
-                            lastName: Yup.string().max(255).required('Last name is required'),
-                            password: Yup.string().max(255).required('password is required'),
-                            policy: Yup.boolean().oneOf([true], 'This field must be checked'),
+                            email: Yup.string()
+                                .email('*Email không hợp lệ')
+                                .max(255)
+                                .required('*Trường này là bắt buộc'),
+                            username: Yup.string().max(255).required('*Trường này là bắt buộc'),
+                            password: Yup.string().max(255).required('*Trường này là bắt buộc'),
+                            cfpassword: Yup.string()
+                                .oneOf([Yup.ref('password'), null], 'Mật khẩu không khớp')
+                                .required('*Trường này là bắt buộc'),
                         })}
                         onSubmit={() => {
-                            navigate('/app/dashboard', { replace: true });
+                            navigate('/', { replace: true });
                         }}
                     >
                         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
                             <form onSubmit={handleSubmit}>
-                                <Box sx={{ mb: 3 }}>
-                                    <Typography color="textPrimary" variant="h2">
-                                        Create new account
-                                    </Typography>
-                                    <Typography color="textSecondary" gutterBottom variant="body2">
-                                        Use your email to create new account
-                                    </Typography>
+                                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                                    <Link component={RouterLink} to="/">
+                                        <img width="100px" src={logo} alt="logo" />
+                                    </Link>
                                 </Box>
                                 <TextField
-                                    error={Boolean(touched.firstName && errors.firstName)}
+                                    error={Boolean(touched.username && errors.username)}
                                     fullWidth
-                                    helperText={touched.firstName && errors.firstName}
-                                    label="First name"
+                                    helperText={touched.username && errors.username}
+                                    label="Tên đăng nhập"
                                     margin="normal"
-                                    name="firstName"
+                                    name="username"
                                     onBlur={handleBlur}
                                     onChange={handleChange}
-                                    value={values.firstName}
+                                    value={values.username}
                                     variant="outlined"
                                 />
-                                <TextField
-                                    error={Boolean(touched.lastName && errors.lastName)}
-                                    fullWidth
-                                    helperText={touched.lastName && errors.lastName}
-                                    label="Last name"
-                                    margin="normal"
-                                    name="lastName"
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    value={values.lastName}
-                                    variant="outlined"
-                                />
+
                                 <TextField
                                     error={Boolean(touched.email && errors.email)}
                                     fullWidth
                                     helperText={touched.email && errors.email}
-                                    label="Email Address"
+                                    label="Email"
                                     margin="normal"
                                     name="email"
                                     onBlur={handleBlur}
@@ -94,63 +78,53 @@ function Register() {
                                     error={Boolean(touched.password && errors.password)}
                                     fullWidth
                                     helperText={touched.password && errors.password}
-                                    label="Password"
+                                    label="Mật khẩu"
                                     margin="normal"
                                     name="password"
+                                    type="password"
                                     onBlur={handleBlur}
                                     onChange={handleChange}
-                                    type="password"
                                     value={values.password}
                                     variant="outlined"
                                 />
-                                <Box
-                                    sx={{
-                                        alignItems: 'center',
-                                        display: 'flex',
-                                        ml: -1,
-                                    }}
-                                >
-                                    <Checkbox checked={values.policy} name="policy" onChange={handleChange} />
-                                    <Typography color="textSecondary" variant="body1">
-                                        I have read the{' '}
-                                        <Link
-                                            color="primary"
-                                            component={RouterLink}
-                                            to="#"
-                                            underline="always"
-                                            variant="h6"
-                                        >
-                                            Terms and Conditions
-                                        </Link>
-                                    </Typography>
-                                </Box>
-                                {Boolean(touched.policy && errors.policy) && (
-                                    <FormHelperText error>{errors.policy}</FormHelperText>
-                                )}
+                                <TextField
+                                    error={Boolean(touched.cfpassword && errors.cfpassword)}
+                                    fullWidth
+                                    helperText={touched.cfpassword && errors.cfpassword}
+                                    label="Nhập lại mật khẩu"
+                                    margin="normal"
+                                    name="cfpassword"
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    type="password"
+                                    value={values.cfpassword}
+                                    variant="outlined"
+                                />
+
                                 <Box sx={{ py: 2 }}>
                                     <Button
-                                        color="primary"
                                         disabled={isSubmitting}
                                         fullWidth
                                         size="large"
                                         type="submit"
                                         variant="contained"
+                                        className="register-button"
                                     >
-                                        Sign up now
+                                        Đăng ký
                                     </Button>
                                 </Box>
-                                <Typography color="textSecondary" variant="body1">
-                                    Have an account?{' '}
-                                    <Link component={RouterLink} to="/login" variant="h6">
-                                        Sign in
+                                <Typography sx={{ textAlign: 'center' }} color="textSecondary" variant="body1">
+                                    Đã có tài khoản?{' '}
+                                    <Link sx={{ color: '#ca9222' }} component={RouterLink} to="/dang-nhap" variant="h6">
+                                        Đăng nhập
                                     </Link>
                                 </Typography>
                             </form>
                         )}
                     </Formik>
                 </Container>
-            </Box>
-        </>
+            </div>
+        </div>
     );
 }
 
