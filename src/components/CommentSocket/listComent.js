@@ -24,6 +24,7 @@ const ListComment = (props) => {
     <div>
       {
         listComment.map(currentComment => {
+          console.log(currentComment)
           return <Comment comment={currentComment}></Comment>
         })
       }

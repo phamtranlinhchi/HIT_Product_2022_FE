@@ -15,10 +15,9 @@ const AddComent = (props) => {
     socket.emit('comment', comment)
     console.log("add comment " + comment)
     const demoComment = {
-      user: "nguyen quy1",
+      users: "62ac0201ad2a6b0e3026d317",
       book: "62ab6e54ead95d78292cc437",
-      commentBookContent: comment
-
+      commentBookContent: comment,
     }
     axios.post("http://localhost:5000/api/commentBooks", demoComment)
       .then(res => {
@@ -33,10 +32,9 @@ const AddComent = (props) => {
   return (
     <div>
       <div className='form-group'>
-        <div style={{ width: '75%', margin: '0 auto', display: 'flex', justifyContent: 'space-between' }}>
-          <input id="my-input" aria-describedby="my-helper-text" className="form-group_input" placeholder="Nhận xét" onChange={(e) => changeComment(e)} value={comment} />
-          <button variant="outlined" className="form-group_button" onClick={addComment} >Nhận xét</button>
-        </div>
+        <label className='title'>Bình luận</label>
+        <textarea id="my-input" aria-describedby="my-helper-text" className="form-group_input" placeholder="Nhận xét" onChange={(e) => changeComment(e)} value={comment} />
+        <button variant="outlined" className="form-group_button" onClick={addComment} >Nhận xét</button>
       </div>
 
     </div>

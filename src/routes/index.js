@@ -63,9 +63,8 @@ const publicRoutes = [
     },
     {
         path: '/sach',
-        component: BookEffect
-    }
-
+        component: BookEffect,
+    },
 ];
 
 const privateRoutes = [];

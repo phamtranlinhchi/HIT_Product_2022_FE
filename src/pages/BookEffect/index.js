@@ -1,6 +1,6 @@
 import React from 'react'
 import './bookEffect.scss'
-import Comment from '../CommentSocket/index';
+import CommentBooks from '../../components/Comment_bookv2/index';
 const BookEffect = () => {
     return (
         <div className="BookEffect">
@@ -8,7 +8,7 @@ const BookEffect = () => {
                 <iframe className='bookContainer_book' src="https://publuu.com/flip-book/29102/90831/page/6" ></iframe>
             </div>
             <div>
-                <Comment></Comment>
+                <CommentBooks></CommentBooks>
             </div>
         </div>
     )
