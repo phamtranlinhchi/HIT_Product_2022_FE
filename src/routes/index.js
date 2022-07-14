@@ -6,12 +6,16 @@ import Introduce from '~/pages/Introduce';
 import NiceBooks from '~/pages/NiceBooks';
 import NiceVideos from '~/pages/NiceVideos';
 import NicePosts from '~/pages/NicePosts';
+<<<<<<< HEAD
 import NotFound from '~/pages/NotFound';
 import Register from '~/pages/Register';
 import Login from '~/pages/Login';
 import ForgetPassword from '~/pages/ForgetPassword';
 import ResetPassword from '~/pages/ResetPassword';
 
+=======
+import BookEffect from '~/pages/BookEffect';
+>>>>>>> ddb92cb (feature:bookEffect)
 const publicRoutes = [
     {
         path: '/danh-muc',
@@ -34,6 +38,7 @@ const publicRoutes = [
         component: Introduce,
     },
     {
+<<<<<<< HEAD
         path: '/dang-ky',
         layout: AuthLayout,
         component: Register,
@@ -60,6 +65,11 @@ const publicRoutes = [
         layout: null,
         component: NotFound,
     },
+=======
+        path: '/sach',
+        component: BookEffect
+    }
+>>>>>>> ddb92cb (feature:bookEffect)
 ];
 
 const privateRoutes = [];
