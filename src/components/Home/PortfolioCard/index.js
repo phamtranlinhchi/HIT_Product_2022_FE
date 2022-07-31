@@ -16,7 +16,7 @@ function PortfolioCard(props) {
             <img src={props.img} alt="oprtfolio-bg" />
             <div className="portfoliocard_overlay">
                 <div className="portfoliocard_overlay-title">{props.title}</div>
-                <div className="portfoliocard_overlay-views">
+                <div className="portfoliocard_overlay-views" style={{ display: 'flex' }}>
                     {/* <span className="portfoliocard_overlay-views-icon"> */}
                     <VisibilityIcon sx={{ lineHeight: 0 }} />
                     {/* </span>{' '} */}

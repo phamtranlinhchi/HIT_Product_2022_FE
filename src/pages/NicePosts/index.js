@@ -79,7 +79,7 @@ const NicePosts = () => {
                     ))}
             </div>
 
-            <Pagination sx={{ fontSize: '2rem' }} count={10} page={page} onChange={handleChange} />
+            <Pagination sx={{ fontSize: '20px' }} count={10} page={page} onChange={handleChange} />
         </div>
     );
 };

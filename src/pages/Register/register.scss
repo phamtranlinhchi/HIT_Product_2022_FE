@@ -1,5 +1,5 @@
 .register {
-    width: 50rem;
+    width: 500px;
     height: 95vh;
     margin: auto;
     display: flex;
@@ -10,10 +10,10 @@
         background-color: #fff;
         border-radius: 8px;
         display: flex;
-        height: 60rem;
+        height: 600px;
         flex-direction: column;
         justify-content: center;
-        padding: 2rem 1rem;
+        padding: 20px 10px;
         .register-button {
             background-color: #e8aa30;
             &:hover {

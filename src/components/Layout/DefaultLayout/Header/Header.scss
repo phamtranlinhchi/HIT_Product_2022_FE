@@ -12,18 +12,18 @@ header {
         background-color: black;
         display: flex;
         justify-content: space-between;
-        padding: 0 20rem;
-        font-size: 2rem;
+        padding: 0 200px;
+        font-size: 20px;
         &-icons {
-            width: 10rem;
+            width: 100px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
     }
     .header2 {
-        padding: 0 20rem;
-        height: 7rem;
+        padding: 0 200px;
+        height: 70px;
         background-color: #d9d9d9;
         display: flex;
         justify-content: space-between;
@@ -33,9 +33,8 @@ header {
         }
 
         &-logo {
-            // padding-left: 2.5rem;
             img {
-                width: 6rem;
+                width: 60px;
             }
         }
 
@@ -54,7 +53,7 @@ header {
                 }
 
                 li {
-                    padding: 0.5rem 1.5rem;
+                    padding: 5px 15px;
 
                     &:hover {
                         span::after {
@@ -71,10 +70,10 @@ header {
                             transition: all 0.3s ease;
                             content: '';
                             position: absolute;
-                            bottom: -0.6rem;
+                            bottom: -6px;
                             left: 0;
-                            height: 0.2rem;
-                            width: 0.1rem;
+                            height: 2px;
+                            width: 1px;
                         }
                     }
                 }
@@ -83,8 +82,8 @@ header {
         &-search {
             i {
                 transition: all 0.14s ease-out;
-                font-size: 3rem;
-                padding-right: 1rem;
+                font-size: 30px;
+                padding-right: 10px;
                 &:hover {
                     color: #000;
                 }
@@ -92,13 +91,13 @@ header {
         }
     }
     .header3 {
-        margin-top: 10rem;
+        margin-top: 100px;
         display: flex;
         justify-content: space-between;
-        padding: 0.5rem 20rem;
-        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.212);
+        padding: 5px 200px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.212);
         span {
-            margin-left: 1rem;
+            margin-left: 10px;
         }
         .header3-authlink {
             &:hover {

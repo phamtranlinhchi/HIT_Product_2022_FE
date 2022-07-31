@@ -1,5 +1,4 @@
 import AuthLayout from '~/components/Layout/AuthLayout';
-
 import Home from '~/pages/Home';
 import Category from '~/pages/Category';
 import Introduce from '~/pages/Introduce';
@@ -11,7 +10,8 @@ import Register from '~/pages/Register';
 import Login from '~/pages/Login';
 import ForgetPassword from '~/pages/ForgetPassword';
 import ResetPassword from '~/pages/ResetPassword';
-
+import BookEffect from '~/pages/BookEffect';
+import ReviewBook from '~/pages/ReviewBook';
 const publicRoutes = [
     {
         path: '/danh-muc',
@@ -59,6 +59,14 @@ const publicRoutes = [
         path: '*',
         layout: null,
         component: NotFound,
+    },
+    {
+        path: '/sach',
+        component: BookEffect,
+    },
+    {
+        path: '/review-book',
+        component: ReviewBook,
     },
 ];
 
