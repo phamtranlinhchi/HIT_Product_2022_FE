@@ -47,6 +47,8 @@ function Footer() {
                             ),
                         }}
                     />
+                    {/* <input placeholder="Tìm kiếm" className="searchInput" />
+                    <span className="searchbtn">test</span> */}
                 </div>
                 <div className="footer1-logo">
                     <Link to="/">

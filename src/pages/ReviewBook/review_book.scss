@@ -1,0 +1,51 @@
+.container-book {
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+}
+
+.title-book {
+    font-size: 2.5rem;
+    word-spacing: 5px;
+    margin-top: 2rem;
+}
+
+.book {
+    margin-top: 2.5rem;
+    display: flex;
+    &-img {
+        margin-right: 2rem;
+    }
+    &-detail {
+        margin-left: 2.5rem;
+        line-height: 4rem;
+        &-infor {
+            list-style-type: none;
+            font-size: 2rem;
+        }
+        &-option {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            &-read {
+                width: 30%;
+                border-radius: 10px;
+                background-color: greenyellow;
+                &:hover {
+                    background-color: rgb(94, 149, 12);
+                }
+            }
+            &-add {
+                width: 60%;
+                border-radius: 10px;
+                background-color: yellow;
+                &:hover {
+                    background-color: rgb(198, 198, 24);
+                }
+            }
+        }
+    }
+}
+
+.book-review {
+    margin-top: 3rem;
+}
