@@ -45,8 +45,12 @@ const Comment = ({
                         initialText={comment.body}
                         handleSubmit={(text) => updateComment(text, comment.id)}
                         handleCancel={() => {
-                            setActiveComment(null);
+                            console.log("cancel");
+                            setActiveComment(false);
                         }}
+                        activeComment={activeComment}
+                        setActiveComment={setActiveComment}
+
                     />
                 )}
                 <div className="comment-actions">
@@ -63,8 +67,11 @@ const Comment = ({
                     {canEdit && (
                         <div
                             className="comment-action"
-                            onClick={() =>
+                            onClick={() => {
                                 setActiveComment({ id: comment.id, type: "editing" })
+
+                            }
+
                             }
                         >
                             Edit
@@ -83,6 +90,7 @@ const Comment = ({
                     <CommentForm
                         submitLabel="Reply"
                         handleSubmit={(text) => addComment(text, replyId)}
+                        setActiveComment={setActiveComment}
                     />
                 )}
                 {replies.length > 0 && (

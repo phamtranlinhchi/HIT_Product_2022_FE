@@ -3,9 +3,10 @@ import { useState } from "react";
 const CommentForm = ({
     handleSubmit,
     submitLabel,
-    hasCancelButton = false,
+    hasCancelButton = true,
     handleCancel,
     initialText = "",
+    setActiveComment
 }) => {
     const [text, setText] = useState(initialText);
     const isTextareaDisabled = text.length === 0;
@@ -22,15 +23,19 @@ const CommentForm = ({
                 onChange={(e) => setText(e.target.value)}
             />
             <button className="comment-form-button" disabled={isTextareaDisabled}>
-                {submitLabel}
+                {/* {submitLabel} */}
+                Tạo
             </button>
             {hasCancelButton && (
                 <button
                     type="button"
                     className="comment-form-button comment-form-cancel-button"
-                    onClick={handleCancel}
+                    onClick={() => {
+                        console.log("cancel");
+                        setActiveComment(false);
+                    }}
                 >
-                    Cancel
+                    Hủy
                 </button>
             )}
         </form>

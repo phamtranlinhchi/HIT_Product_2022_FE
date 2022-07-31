@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import CommentForm from "./CommentForm";
 import Comment from "./Comment";
@@ -8,9 +9,14 @@ import {
     deleteComment as deleteCommentApi,
 } from "./controllerComment";
 
-const Comments = ({ commentsUrl, currentUserId }) => {
+const Comments = ({ commentsUrl, currentUserId, socket }) => {
     const [backendComments, setBackendComments] = useState([]);
     const [activeComment, setActiveComment] = useState(null);
+    const [handleClose, setHandleClose] = useState(true);
+    const handleCloseFc = () => {
+        console.log('getout');
+        setHandleClose(false);
+    }
     const rootComments = backendComments.filter(
         (backendComment) => backendComment.parentId === null
     );
@@ -22,9 +28,11 @@ const Comments = ({ commentsUrl, currentUserId }) => {
                     new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
             );
     const addComment = (text, parentId) => {
-        createCommentApi(text, parentId).then((comment) => {
+        createCommentApi(text, parentId, socket).then((comment) => {
+
             setBackendComments([comment, ...backendComments]);
             setActiveComment(null);
+
         });
     };
 
@@ -49,6 +57,7 @@ const Comments = ({ commentsUrl, currentUserId }) => {
                 setBackendComments(updatedBackendComments);
             });
         }
+
     };
 
     useEffect(() => {
@@ -56,12 +65,28 @@ const Comments = ({ commentsUrl, currentUserId }) => {
             setBackendComments(data);
         });
     }, []);
-
+    socket.on("listComment", (data) => {
+        const customComment = {};
+        customComment.id = data.id;
+        customComment.body = data.body;
+        customComment.parentId = data.parentId;
+        customComment.userId = data.users;
+        customComment.username = data.username;
+        customComment.createdAt = data.commentBookDate;
+        setBackendComments([data, ...backendComments]);
+        setActiveComment(null);
+    })
     return (
         <div className="comments">
-            <h3 className="comments-title">Comments</h3>
-            <div className="comment-form-title">Write comment</div>
-            <CommentForm submitLabel="Write" handleSubmit={addComment} />
+            <h3 className="comments-title">Bình luận</h3>
+            <div className="comment-form-title">Tạo</div>
+            {/* {
+                handleClose && (
+                    <CommentForm submitLabel="Write" handleSubmit={addComment} socket={socket} onBlur={handleCloseFc} />
+
+                )
+            } */}
+            <CommentForm submitLabel="Write" handleSubmit={addComment} socket={socket} onBlur={handleCloseFc} setActiveComment={setActiveComment} />
             <div className="comments-container">
                 {rootComments.map((rootComment) => (
                     <Comment
