@@ -1,6 +1,7 @@
 import React from 'react';
 import './bookEffect.scss';
-import CommentBooks from '../../components/Comment_bookv2/index';
+import CommentBooks from '~/components/Comment_bookv2';
+
 const BookEffect = () => {
     return (
         <div className="BookEffect">
