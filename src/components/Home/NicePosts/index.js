@@ -3,48 +3,55 @@ import { Pagination } from '@mui/material';
 
 import './niceposts.scss';
 import PortfolioCard from '../PortfolioCard';
+import post1 from '~/assets/images/home/post1.jpeg';
+import post2 from '~/assets/images/home/post2.jpeg';
+import post3 from '~/assets/images/home/post3.jpeg';
+import post4 from '~/assets/images/home/post4.webp';
+import post5 from '~/assets/images/home/post5.jpeg';
+import post6 from '~/assets/images/home/post6.jpg';
+
 function NicePosts() {
     const posts = [
         {
             id: 1,
-            img: 'https://media.gatesnotes.com/-/media/Images/Books/Klara-and-the-Sun/klara_and_the_sun_20210827_thumbnail_320x320_02.ashx',
-            title: 'Klara and the Sun',
-            views: 18746,
+            img: post1,
+            title: '101 reasons to read book',
+            views: 3216,
             type: 'post',
         },
         {
             id: 2,
-            img: 'https://media.gatesnotes.com/-/media/Images/Books/Klara-and-the-Sun/klara_and_the_sun_20210827_thumbnail_320x320_02.ashx',
-            title: 'Klara and the Sun',
-            views: 18746,
+            img: post2,
+            title: 'Top 7 reasons to read book',
+            views: 2432,
             type: 'post',
         },
         {
             id: 3,
-            img: 'https://media.gatesnotes.com/-/media/Images/Books/Klara-and-the-Sun/klara_and_the_sun_20210827_thumbnail_320x320_02.ashx',
-            title: 'Klara and the Sun',
-            views: 18746,
+            img: post3,
+            title: 'Reason to read more books',
+            views: 1924,
             type: 'post',
         },
         {
             id: 4,
-            img: 'https://media.gatesnotes.com/-/media/Images/Books/Klara-and-the-Sun/klara_and_the_sun_20210827_thumbnail_320x320_02.ashx',
-            title: 'Klara and the Sun',
-            views: 18746,
+            img: post4,
+            title: 'Reading is good for moms',
+            views: 234,
             type: 'post',
         },
         {
             id: 5,
-            img: 'https://media.gatesnotes.com/-/media/Images/Books/Klara-and-the-Sun/klara_and_the_sun_20210827_thumbnail_320x320_02.ashx',
-            title: 'Klara and the Sun',
-            views: 18746,
+            img: post5,
+            title: 'Benefit of 20 minutes reading',
+            views: 621,
             type: 'post',
         },
         {
             id: 6,
-            img: 'https://media.gatesnotes.com/-/media/Images/Books/Klara-and-the-Sun/klara_and_the_sun_20210827_thumbnail_320x320_02.ashx',
-            title: 'Klara and the Sun',
-            views: 18746,
+            img: post6,
+            title: 'Reading for beginners',
+            views: 1273,
             type: 'post',
         },
     ];

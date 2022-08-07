@@ -6,7 +6,12 @@ const BookEffect = () => {
     return (
         <div className="BookEffect">
             <div className="bookContainer">
-                <iframe className="bookContainer_book" src="https://publuu.com/flip-book/29102/90831/page/6"></iframe>
+                <iframe
+                    className="bookContainer_book"
+                    title="sach"
+                    src="
+                    https://publuu.com/flip-book/35644/110040"
+                ></iframe>
             </div>
             <div>
                 <CommentBooks></CommentBooks>

@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import './login.scss';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { Box, Button, Container, Link, TextField, Typography } from '@mui/material';
+import httpService from '~/services/http-service';
+import storageService from '~/services/storage.service';
 
 import logo from '~/assets/images/header-logo.png';
 
 function Login() {
+    // const [valueInput, setValueInput] = useState({
+    //     username: '',
+    //     password: '',
+    // });
+
+    const usernameRef = useRef(null);
+    const passwordRef = useRef(null);
     const navigate = useNavigate();
 
     return (
@@ -28,8 +37,21 @@ function Login() {
                             username: Yup.string().required('*Trường này là bắt buộc'),
                             password: Yup.string().required('*Trường này là bắt buộc'),
                         })}
-                        onSubmit={() => {
-                            navigate('/', { replace: true });
+                        onSubmit={async () => {
+                            const resData = await httpService.post('auth/login', {
+                                body: {
+                                    username: usernameRef.current.value,
+                                    password: passwordRef.current.value,
+                                },
+                            });
+
+                            // console.log(resData);
+
+                            if (resData.status === 200) {
+                                storageService.set('accessToken', resData.data.tokens.access.token);
+                                storageService.set('isLogin', true);
+                                navigate('/', { replace: true });
+                            }
                         }}
                     >
                         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
@@ -50,6 +72,7 @@ function Login() {
                                     onChange={handleChange}
                                     value={values.username}
                                     variant="outlined"
+                                    inputRef={usernameRef}
                                 />
 
                                 <TextField
@@ -64,6 +87,7 @@ function Login() {
                                     onChange={handleChange}
                                     value={values.password}
                                     variant="outlined"
+                                    inputRef={passwordRef}
                                 />
 
                                 <Box sx={{ py: 2 }}>

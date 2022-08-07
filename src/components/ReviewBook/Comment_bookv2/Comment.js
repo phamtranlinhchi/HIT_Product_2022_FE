@@ -1,4 +1,4 @@
-import CommentForm from "./CommentForm";
+import CommentForm from './CommentForm';
 
 const Comment = ({
     comment,
@@ -11,26 +11,19 @@ const Comment = ({
     parentId = null,
     currentUserId,
 }) => {
-    const isEditing =
-        activeComment &&
-        activeComment.id === comment.id &&
-        activeComment.type === "editing";
-    const isReplying =
-        activeComment &&
-        activeComment.id === comment.id &&
-        activeComment.type === "replying";
+    const isEditing = activeComment && activeComment.id === comment.id && activeComment.type === 'editing';
+    const isReplying = activeComment && activeComment.id === comment.id && activeComment.type === 'replying';
     const createdAt = new Date(comment.createdAt).toLocaleDateString();
     const fiveMinutes = 300000;
     const timePassed = new Date() - new Date(comment.createdAt) > fiveMinutes;
-    const canDelete =
-        currentUserId === comment.userId && replies.length === 0 && !timePassed;
+    const canDelete = currentUserId === comment.userId && replies.length === 0 && !timePassed;
     const canReply = Boolean(currentUserId);
     const canEdit = currentUserId === comment.userId && !timePassed;
     const replyId = parentId ? parentId : comment.id;
     return (
         <div key={comment.id} className="comment">
             <div className="comment-image-container">
-                <img src="/images/user-icon.png" />
+                <img src="/images/user-icon.png" alt="" />
             </div>
             <div className="comment-right-part">
                 <div className="comment-content">
@@ -45,21 +38,18 @@ const Comment = ({
                         initialText={comment.body}
                         handleSubmit={(text) => updateComment(text, comment.id)}
                         handleCancel={() => {
-                            console.log("cancel");
+                            console.log('cancel');
                             setActiveComment(false);
                         }}
                         activeComment={activeComment}
                         setActiveComment={setActiveComment}
-
                     />
                 )}
                 <div className="comment-actions">
                     {canReply && (
                         <div
                             className="comment-action"
-                            onClick={() =>
-                                setActiveComment({ id: comment.id, type: "replying" })
-                            }
+                            onClick={() => setActiveComment({ id: comment.id, type: 'replying' })}
                         >
                             Reply
                         </div>
@@ -68,20 +58,14 @@ const Comment = ({
                         <div
                             className="comment-action"
                             onClick={() => {
-                                setActiveComment({ id: comment.id, type: "editing" })
-
-                            }
-
-                            }
+                                setActiveComment({ id: comment.id, type: 'editing' });
+                            }}
                         >
                             Edit
                         </div>
                     )}
                     {canDelete && (
-                        <div
-                            className="comment-action"
-                            onClick={() => deleteComment(comment.id)}
-                        >
+                        <div className="comment-action" onClick={() => deleteComment(comment.id)}>
                             Delete
                         </div>
                     )}

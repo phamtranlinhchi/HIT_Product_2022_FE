@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './register.scss';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { Box, Button, Container, Link, TextField, Typography } from '@mui/material';
-
 import logo from '~/assets/images/header-logo.png';
+import httpService from '~/services/http-service';
+import storageService from '~/services/storage.service';
 
 function Register() {
     const navigate = useNavigate();
+    const usernameRef = useRef(null);
+    const passwordRef = useRef(null);
+    const emailRef = useRef(null);
 
     return (
         <div className="register">
@@ -31,14 +35,35 @@ function Register() {
                                 .email('*Email không hợp lệ')
                                 .max(255)
                                 .required('*Trường này là bắt buộc'),
-                            username: Yup.string().max(255).required('*Trường này là bắt buộc'),
-                            password: Yup.string().max(255).required('*Trường này là bắt buộc'),
+                            username: Yup.string().max(200).required('*Trường này là bắt buộc'),
+                            password: Yup.string()
+                                .min(8, 'Mật khẩu phải dài ít nhất 8 kí tự')
+                                .max(255)
+                                .required('*Trường này là bắt buộc')
+                                .matches(
+                                    /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]/,
+                                    'Mật khẩu phải chứa ít nhất 1 chữ cái và 1 chữ số',
+                                ),
                             cfpassword: Yup.string()
                                 .oneOf([Yup.ref('password'), null], 'Mật khẩu không khớp')
                                 .required('*Trường này là bắt buộc'),
                         })}
-                        onSubmit={() => {
-                            navigate('/', { replace: true });
+                        onSubmit={async () => {
+                            const resData = await httpService.post('auth/signup', {
+                                headers: '',
+                                params: '',
+                                body: {
+                                    username: usernameRef.current.value,
+                                    password: passwordRef.current.value,
+                                    email: emailRef.current.value,
+                                },
+                            });
+
+                            // console.log(resData);
+
+                            if (resData.status === 201) {
+                                navigate('/dang-nhap', { replace: true });
+                            }
                         }}
                     >
                         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
@@ -59,6 +84,7 @@ function Register() {
                                     onChange={handleChange}
                                     value={values.username}
                                     variant="outlined"
+                                    inputRef={usernameRef}
                                 />
 
                                 <TextField
@@ -73,6 +99,7 @@ function Register() {
                                     type="email"
                                     value={values.email}
                                     variant="outlined"
+                                    inputRef={emailRef}
                                 />
                                 <TextField
                                     error={Boolean(touched.password && errors.password)}
@@ -86,6 +113,7 @@ function Register() {
                                     onChange={handleChange}
                                     value={values.password}
                                     variant="outlined"
+                                    inputRef={passwordRef}
                                 />
                                 <TextField
                                     error={Boolean(touched.cfpassword && errors.cfpassword)}

@@ -1,11 +1,14 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef, useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 // import styles from './Header.module.scss';
 import './Header.scss';
 import logo from '~/assets/images/header-logo.png';
+import storageService from '~/services/storage.service';
+import httpService from '~/services/http-service';
 
 function Header() {
     const pageLocation = useLocation();
+    const [user, setUser] = useState(null);
     let currentPage = '';
     switch (pageLocation.pathname) {
         case '/':
@@ -31,7 +34,12 @@ function Header() {
             break;
     }
 
-    const user = null;
+    const token = storageService.get('accessToken');
+    useEffect(() => {
+        if (token) {
+            httpService.get('users/62e35190b069a6154cc81fa7').then((data) => setUser(data.data.user));
+        }
+    }, [token]);
 
     return (
         <header>
@@ -102,7 +110,7 @@ function Header() {
                 <div className="header3-account">
                     {user ? (
                         <>
-                            {user.name}{' '}
+                            {user.username}{' '}
                             <span>
                                 <i class="fa-regular fa-user"></i>
                             </span>
