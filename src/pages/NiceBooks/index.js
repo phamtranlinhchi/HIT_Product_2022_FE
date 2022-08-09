@@ -1,6 +1,7 @@
 import React from 'react';
 import { Pagination } from '@mui/material';
 import './nicebooks.scss';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
 import PortfolioCard from '~/components/Home/PortfolioCard';
 
@@ -78,7 +79,9 @@ const NiceBooks = () => {
                 {books &&
                     books.map((book) => (
                         <div key={book.id}>
-                            <PortfolioCard img={book.img} title={book.title} views={book.views} />
+                            <Link to="/review-book">
+                                <PortfolioCard img={book.img} title={book.title} views={book.views} />
+                            </Link>
                         </div>
                     ))}
             </div>
