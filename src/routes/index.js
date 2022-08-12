@@ -12,8 +12,10 @@ import ForgetPassword from '~/pages/ForgetPassword';
 import ResetPassword from '~/pages/ResetPassword';
 import BookEffect from '~/pages/BookEffect';
 import ReviewBook from '~/pages/ReviewBook';
-const publicRoutes = [
-    {
+import Account from '~/pages/Account';
+import BookAccount from '~/pages/BookAccount';
+import AudioBook from '~/pages/AudioBook';
+const publicRoutes = [{
         path: '/danh-muc',
         component: Category,
     },
@@ -61,14 +63,27 @@ const publicRoutes = [
         component: NotFound,
     },
     {
-        path: '/sach',
+        path: '/sach/:id',
         component: BookEffect,
     },
     {
-        path: '/review-book',
+        path: '/review-book/:id',
         component: ReviewBook,
     },
+    {
+        path: '/tai-khoan/:token',
+        component: Account,
+    },
+    {
+        path: '/tai-khoan/sach/:token',
+        component: BookAccount
+    },
+    {
+        path: '/audio-sach/:id',
+        component: AudioBook
+    },
 ];
+
 
 const privateRoutes = [];
 
