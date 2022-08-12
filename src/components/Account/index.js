@@ -1,16 +1,11 @@
 import React from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
-import './category.scss';
-import PortfolioCard from '../PortfolioCard';
-import dac_nhan_tam from '~/assets/images/home/dac_nhan_tam.jpeg';
-import book2 from '~/assets/images/home/book2.jpg';
-import book3 from '~/assets/images/home/book3.jpeg';
-import book4 from '~/assets/images/home/book4.jpeg';
-import book5 from '~/assets/images/home/book5.jpeg';
-import book6 from '~/assets/images/home/book6.jpeg';
+import PortfolioCard from '../../components/Home/PortfolioCard';
+import './category.scss'
+
+
 import { useEffect, useState } from 'react'
-import http_service from '../../../services/http-service';
 import axios from 'axios'
 function Category() {
     const [books, setBooks] = useState([]);

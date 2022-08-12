@@ -50,7 +50,11 @@ function Login() {
                             if (resData.status === 200) {
                                 storageService.set('accessToken', resData.data.tokens.access.token);
                                 storageService.set('isLogin', true);
+                                storageService.setObject("username", resData.data.user.username);
+                                storageService.set('userId', resData.data.user._id);
+                                // storageService.setObject("token", resData.data.tokens.access.token);
                                 navigate('/', { replace: true });
+                                // console.log(resData.data.user)
                             }
                         }}
                     >

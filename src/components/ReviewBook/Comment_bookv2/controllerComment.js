@@ -1,10 +1,10 @@
 import axios from 'axios';
-export const getComments = async() => {
+export const getComments = async(id, bookId) => {
     let commentBook = [];
-    const book_id = "62d612b0dcb93ef2264e81e6";
+    const book_id = bookId;
     // http://localhost:5000/api/commentBooks/
     await axios
-        .get("http://localhost:5000/api/commentBooks/" + `${book_id}`)
+        .get("http://18.144.43.131:5000/api/commentBooks/" + `${book_id}`)
         .then(data => {
             console.log(data.data.commentBook);
             data.data.commentBook.forEach(function(current, index) {
@@ -26,9 +26,9 @@ export const getComments = async() => {
     return commentBook;
 };
 
-export const createComment = async(text, parentId = null, socket) => {
-    const book_id = "62d612b0dcb93ef2264e81e6";
-    const userId = "62abfac20a3c3c3872ab2ca5";
+export const createComment = async(text, parentId = null, socket, id, bookId) => {
+    const book_id = bookId;
+    const userId = id ? id : "62f35d162a90ab209c7210c8";
     const headers = {
         'Content-Type': 'application/json',
         'token': "toke_fake"
@@ -42,7 +42,7 @@ export const createComment = async(text, parentId = null, socket) => {
     };
 
     const customComment = {};
-    await axios.post("http://localhost:5000/api/commentBooks/", newCommentBook, headers)
+    await axios.post("http://18.144.43.131:5000/api/commentBooks/", newCommentBook, headers)
         .then(res => {
             customComment.id = res.data._doc._id;
             customComment.body = res.data._doc.commentBookContent;

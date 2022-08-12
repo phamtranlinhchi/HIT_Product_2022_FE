@@ -9,12 +9,11 @@ import {
     deleteComment as deleteCommentApi,
 } from "./controllerComment";
 
-const Comments = ({ commentsUrl, currentUserId, socket }) => {
+const Comments = ({ commentsUrl, currentUserId, socket, id, bookId }) => {
     const [backendComments, setBackendComments] = useState([]);
     const [activeComment, setActiveComment] = useState(null);
     const [handleClose, setHandleClose] = useState(true);
     const handleCloseFc = () => {
-        console.log('getout');
         setHandleClose(false);
     }
     const rootComments = backendComments.filter(
@@ -28,7 +27,7 @@ const Comments = ({ commentsUrl, currentUserId, socket }) => {
                     new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
             );
     const addComment = (text, parentId) => {
-        createCommentApi(text, parentId, socket).then((comment) => {
+        createCommentApi(text, parentId, socket, id, bookId).then((comment) => {
 
             setBackendComments([comment, ...backendComments]);
             setActiveComment(null);
@@ -61,7 +60,7 @@ const Comments = ({ commentsUrl, currentUserId, socket }) => {
     };
 
     useEffect(() => {
-        getCommentsApi().then((data) => {
+        getCommentsApi(id, bookId).then((data) => {
             setBackendComments(data);
         });
     }, []);

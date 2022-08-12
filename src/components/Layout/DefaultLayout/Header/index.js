@@ -1,5 +1,6 @@
 import React, { useLayoutEffect, useRef, useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // import styles from './Header.module.scss';
 import './Header.scss';
 import logo from '~/assets/images/header-logo.png';
@@ -9,6 +10,10 @@ import httpService from '~/services/http-service';
 function Header() {
     const pageLocation = useLocation();
     const [user, setUser] = useState(null);
+    const token = storageService.get('accessToken');
+    const [idLogin, setIsLogin] = useState(true);
+    // const pathAccount = "tai-khoan/" + `${token}`;
+    const pathAccount = "http://localhost:3000/tai-khoan/" + `${token}`
     let currentPage = '';
     switch (pageLocation.pathname) {
         case '/':
@@ -29,18 +34,28 @@ function Header() {
         case '/gioi-thieu':
             currentPage = 'Giới thiệu';
             break;
+        case '/tai-khoan':
+            currentPage = 'Tài khoản'
         default:
             currentPage = '';
             break;
     }
 
-    const token = storageService.get('accessToken');
-    useEffect(() => {
-        if (token) {
-            httpService.get('users/62e35190b069a6154cc81fa7').then((data) => setUser(data.data.user));
-        }
-    }, [token]);
 
+    // useEffect(() => {
+    //     if (token) {
+    //         httpService.get('users/' + `${token}`).then((data) => setUser(data.data.user));
+    //     }
+    // }, [token]);
+    useEffect(() => {
+        const user = storageService.get('username');
+        if (user) {
+            setUser(storageService.get('username').split('"').map(user => user.toUpperCase()));
+        }
+    }, []);
+    const redirectAccount = () => {
+        window.open(pathAccount)
+    }
     return (
         <header>
             <div style={{ position: 'fixed', top: 0, width: '100%', zIndex: 99 }}>
@@ -108,11 +123,16 @@ function Header() {
             <div className="header3">
                 <div className="header3-page">{currentPage}</div>
                 <div className="header3-account">
-                    {user ? (
+                    {(user && idLogin) ? (
                         <>
-                            {user.username}{' '}
+                            {user}{' '}
                             <span>
-                                <i class="fa-regular fa-user"></i>
+                                <Link to="" class="icon-account"> <i class="fa-regular fa-user"></i></Link>
+                                <div class="manageAccount">
+                                    <Link to="" className="log-out" onClick={() => { storageService.remove("accessToken"); storageService.remove("username"); setIsLogin(false); storageService.remove("userId"); }}><div>Đăng xuất</div></Link>
+                                    <Link to="" className="log-out" onClick={redirectAccount}><div>Quản lý tài khoản</div></Link>
+                                </div>
+
                             </span>
                         </>
                     ) : (
