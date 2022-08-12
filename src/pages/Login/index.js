@@ -4,7 +4,7 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { Box, Button, Container, Link, TextField, Typography } from '@mui/material';
+import { Box, Button, Container, Link, TextField, Typography, Snackbar, Alert, AlertTitle } from '@mui/material';
 import httpService from '~/services/http-service';
 import storageService from '~/services/storage.service';
 
@@ -16,6 +16,7 @@ function Login() {
     //     password: '',
     // });
 
+    const [error, setError] = useState('');
     const usernameRef = useRef(null);
     const passwordRef = useRef(null);
     const navigate = useNavigate();
@@ -38,23 +39,24 @@ function Login() {
                             password: Yup.string().required('*Trường này là bắt buộc'),
                         })}
                         onSubmit={async () => {
-                            const resData = await httpService.post('auth/login', {
-                                body: {
-                                    username: usernameRef.current.value,
-                                    password: passwordRef.current.value,
-                                },
-                            });
-
-                            // console.log(resData);
-
-                            if (resData.status === 200) {
-                                storageService.set('accessToken', resData.data.tokens.access.token);
-                                storageService.set('isLogin', true);
-                                storageService.setObject("username", resData.data.user.username);
-                                storageService.set('userId', resData.data.user._id);
-                                // storageService.setObject("token", resData.data.tokens.access.token);
-                                navigate('/', { replace: true });
-                                // console.log(resData.data.user)
+                            try {
+                                const resData = await httpService.post('auth/login', {
+                                    body: {
+                                        username: usernameRef.current.value,
+                                        password: passwordRef.current.value,
+                                    },
+                                });
+                                if (resData.status === 200) {
+                                    storageService.set('accessToken', resData.data.tokens.access.token);
+                                    storageService.set('isLogin', true);
+                                    storageService.setObject('username', resData.data.user.username);
+                                    storageService.set('userId', resData.data.user._id);
+                                    // storageService.setObject("token", resData.data.tokens.access.token);
+                                    navigate('/', { replace: true });
+                                    // console.log(resData.data.user)
+                                }
+                            } catch (err) {
+                                setError('Sai tài khoản hoặc mật khẩu!');
                             }
                         }}
                     >
@@ -123,6 +125,20 @@ function Login() {
                         )}
                     </Formik>
                 </Container>
+                {error && (
+                    <Snackbar
+                        open={error !== ''}
+                        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                        autoHideDuration={4000}
+                        onClose={() => setError('')}
+                        size={30}
+                    >
+                        <Alert severity="error">
+                            <AlertTitle>Lỗi</AlertTitle>
+                            <strong>{error}</strong>
+                        </Alert>
+                    </Snackbar>
+                )}
             </div>
         </div>
     );

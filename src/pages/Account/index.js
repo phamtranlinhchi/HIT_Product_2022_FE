@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import './account.scss'
+import './account.scss';
 const Account = () => {
     const { token } = useParams();
     const [user, setUser] = useState({});
@@ -19,35 +19,40 @@ const Account = () => {
     // const redirectAccount = () => {
     //     window.open(pathManageAccount);
     // }
-    const pathFetchUser = "http://18.144.43.131:5000/api/users/tokenUser";
+    const pathFetchUser = 'http://18.144.43.131:5000/api/users/tokenUser';
     useEffect(() => {
-        axios.get(pathFetchUser, {
-            headers: {
-                'Content-Type': 'application/json',
-                'authorization': 'Bearer ' + `${token}`
-            }
-        }).then(res => {
-            // console.log(res.data.user); //
-            setUser(res.data.user)
-        })
-    }, [])
+        axios
+            .get(pathFetchUser, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    authorization: 'Bearer ' + `${token}`,
+                },
+            })
+            .then((res) => {
+                // console.log(res.data.user); //
+                setUser(res.data.user);
+            });
+    }, []);
     const checkConfirmPassword = () => {
         if (comfirmPassword != passwordNew) {
             setBugComfirm(false);
-        }
-        else {
+        } else {
             setBugComfirm(true);
-
         }
-    }
+    };
     const changeAccount = () => {
         checkConfirmPassword();
-    }
+    };
     return (
         <div className="container-account">
             <div className="acount-header">
-                <Link className="linkAccoutn" style={{ "marginRight": "2rem", "paddingTop": "1rem" }} to={pathBookStore} >Kho sách</Link>
-                <Link className="linkAccoutn" to={pathManageAccount} >Quản lý thông tin cá nhân</Link>
+                <br />
+                <Link className="linkAccount" style={{ marginRight: '2rem', paddingTop: '1rem' }} to={pathBookStore}>
+                    Kho sách
+                </Link>
+                <Link className="linkAccount" to={pathManageAccount}>
+                    Quản lý thông tin cá nhân
+                </Link>
             </div>
             <br />
             <hr />
@@ -64,21 +69,38 @@ const Account = () => {
                 <div className="account-password">
                     <label htmlFor="">Đổi mật khẩu</label>
                     <div className="account-password-column">
-                        <input type="password" name="" id="" placeholder="Mật khẩu hiện tại" onChange={e => setPasswordNow(e.target.value)} />
-                        <input type="password" name="" id="" placeholder="Mật khẩu mới" onChange={e => setPasswordNew(e.target.value)} />
-                        <input type="password" name="" id="" placeholder="Xác nhận mật khẩu mới" onChange={e => setComfirmPassword(e.target.value)} />
+                        <input
+                            type="password"
+                            name=""
+                            id=""
+                            placeholder="Mật khẩu hiện tại"
+                            onChange={(e) => setPasswordNow(e.target.value)}
+                        />
+                        <input
+                            type="password"
+                            name=""
+                            id=""
+                            placeholder="Mật khẩu mới"
+                            onChange={(e) => setPasswordNew(e.target.value)}
+                        />
+                        <input
+                            type="password"
+                            name=""
+                            id=""
+                            placeholder="Xác nhận mật khẩu mới"
+                            onChange={(e) => setComfirmPassword(e.target.value)}
+                        />
                         {!bugComfirm ? (
-                            <div className="confirm-password">
-                                * Mật khẩu không trùng nhau
-                            </div>
-                        ) : <div></div>
-                        }
+                            <div className="confirm-password">* Mật khẩu không trùng nhau</div>
+                        ) : (
+                            <div></div>
+                        )}
                         <button onClick={changeAccount}>Đổi</button>
                     </div>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Account
+export default Account;

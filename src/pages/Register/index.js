@@ -1,10 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import './register.scss';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { Box, Button, Container, Link, TextField, Typography } from '@mui/material';
+import { Box, Button, Container, Link, TextField, Typography, Snackbar, Alert, AlertTitle } from '@mui/material';
 import logo from '~/assets/images/header-logo.png';
 import httpService from '~/services/http-service';
 import storageService from '~/services/storage.service';
@@ -14,6 +14,7 @@ function Register() {
     const usernameRef = useRef(null);
     const passwordRef = useRef(null);
     const emailRef = useRef(null);
+    const [error, setError] = useState('');
 
     return (
         <div className="register">
@@ -49,20 +50,22 @@ function Register() {
                                 .required('*Trường này là bắt buộc'),
                         })}
                         onSubmit={async () => {
-                            const resData = await httpService.post('auth/signup', {
-                                headers: '',
-                                params: '',
-                                body: {
-                                    username: usernameRef.current.value,
-                                    password: passwordRef.current.value,
-                                    email: emailRef.current.value,
-                                },
-                            });
+                            try {
+                                const resData = await httpService.post('auth/signup', {
+                                    body: {
+                                        username: usernameRef.current.value,
+                                        password: passwordRef.current.value,
+                                        email: emailRef.current.value,
+                                    },
+                                });
 
-                            // console.log(resData);
+                                // console.log(resData);
 
-                            if (resData.status === 201) {
-                                navigate('/dang-nhap', { replace: true });
+                                if (resData.status === 201) {
+                                    navigate('/dang-nhap', { replace: true });
+                                }
+                            } catch (err) {
+                                setError(err.response.data.message);
                             }
                         }}
                     >
@@ -156,6 +159,20 @@ function Register() {
                         )}
                     </Formik>
                 </Container>
+                {error && (
+                    <Snackbar
+                        open={error !== ''}
+                        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                        autoHideDuration={4000}
+                        onClose={() => setError('')}
+                        size={30}
+                    >
+                        <Alert severity="error">
+                            <AlertTitle>Lỗi</AlertTitle>
+                            <strong>{error}</strong>
+                        </Alert>
+                    </Snackbar>
+                )}
             </div>
         </div>
     );
