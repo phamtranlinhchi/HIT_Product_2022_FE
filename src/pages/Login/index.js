@@ -17,6 +17,7 @@ function Login() {
     // });
 
     const [error, setError] = useState('');
+    const [successAlert, setSuccessAlert] = useState('');
     const usernameRef = useRef(null);
     const passwordRef = useRef(null);
     const navigate = useNavigate();
@@ -51,6 +52,7 @@ function Login() {
                                     storageService.set('isLogin', true);
                                     storageService.setObject('username', resData.data.user.username);
                                     storageService.set('userId', resData.data.user._id);
+                                    setSuccessAlert('Đăng nhập thành công!');
                                     // storageService.setObject("token", resData.data.tokens.access.token);
                                     navigate('/', { replace: true });
                                     // console.log(resData.data.user)
@@ -136,6 +138,20 @@ function Login() {
                         <Alert severity="error">
                             <AlertTitle>Lỗi</AlertTitle>
                             <strong>{error}</strong>
+                        </Alert>
+                    </Snackbar>
+                )}
+                {successAlert && (
+                    <Snackbar
+                        open={successAlert !== ''}
+                        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                        autoHideDuration={4000}
+                        onClose={() => setSuccessAlert('')}
+                        size={30}
+                    >
+                        <Alert severity="success">
+                            <AlertTitle>Thành công</AlertTitle>
+                            <strong>{successAlert}</strong>
                         </Alert>
                     </Snackbar>
                 )}

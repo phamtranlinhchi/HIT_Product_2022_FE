@@ -3,6 +3,8 @@ import { Link, NavLink } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './account.scss';
+import AccountNav from '~/components/Account/AccountNav';
+
 const Account = () => {
     const { token } = useParams();
     const [user, setUser] = useState({});
@@ -45,15 +47,8 @@ const Account = () => {
     };
     return (
         <div className="container-account">
-            <div className="acount-header">
-                <br />
-                <Link className="linkAccount" style={{ marginRight: '2rem', paddingTop: '1rem' }} to={pathBookStore}>
-                    Kho sách
-                </Link>
-                <Link className="linkAccount" to={pathManageAccount}>
-                    Quản lý thông tin cá nhân
-                </Link>
-            </div>
+            <br />
+            <AccountNav />
             <br />
             <hr />
             <div className="account-info">
@@ -62,7 +57,7 @@ const Account = () => {
                     <input type="text" placeholder="" disabled value={user.star} />
                 </div>
                 <div className="account-name">
-                    <label htmlFor="">Tên hiện thị</label>
+                    <label htmlFor="">Tên hiển thị</label>
                     <input type="text" placeholder="" value={user.username} />
                 </div>
 

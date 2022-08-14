@@ -9,6 +9,7 @@ import httpService from '~/services/http-service';
 
 function Header() {
     const pageLocation = useLocation();
+    const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const token = storageService.get('accessToken');
     const [idLogin, setIsLogin] = useState(true);
@@ -140,6 +141,7 @@ function Header() {
                                             storageService.remove('username');
                                             setIsLogin(false);
                                             storageService.remove('userId');
+                                            navigate('/', { replace: true });
                                         }}
                                     >
                                         <div>Đăng xuất</div>
