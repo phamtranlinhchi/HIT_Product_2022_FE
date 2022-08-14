@@ -50,6 +50,7 @@ export const createComment = async(text, parentId = null, socket, id, bookId) =>
             customComment.userId = res.data._doc.users;
             customComment.username = res.data.username;
             customComment.createdAt = res.data._doc.commentBookDate;
+            console.log(customComment);
         })
     socket.emit("comment", customComment);
     return customComment;
