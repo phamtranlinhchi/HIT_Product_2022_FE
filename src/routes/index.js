@@ -15,6 +15,7 @@ import ReviewBook from '~/pages/ReviewBook';
 import Account from '~/pages/Account';
 import BookAccount from '~/pages/BookAccount';
 import AudioBook from '~/pages/AudioBook';
+import Post from '~/pages/Post'
 const publicRoutes = [{
         path: '/danh-muc',
         component: Category,
@@ -81,6 +82,10 @@ const publicRoutes = [{
     {
         path: '/audio-sach/:id',
         component: AudioBook
+    },
+    {
+        path: '/bai-viet/:id',
+        component: Post
     },
 ];
 
